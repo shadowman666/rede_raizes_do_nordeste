@@ -1,11 +1,12 @@
+import os
 import bcrypt
 from datetime import datetime, timedelta, timezone
 from jose import jwt
 
-# Configurações do Token JWT
-SECRET_KEY = "chave_secreta_provisoria_do_projeto"
-ALGORITHM = "HS256"
-ACCESS_TOKEN_EXPIRE_MINUTES = 30
+# Configurações do Token JWT carregadas via ambiente (com fallback de desenvolvimento)
+SECRET_KEY = os.getenv("SECRET_KEY", "sua_chave_secreta_jwt_aqui")
+ALGORITHM = os.getenv("ALGORITHM", "HS256")
+ACCESS_TOKEN_EXPIRE_MINUTES = int(os.getenv("ACCESS_TOKEN_EXPIRE_MINUTES", "30"))
 
 
 def gerar_hash_senha(senha: str) -> str:
