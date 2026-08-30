@@ -1,0 +1,382 @@
+{
+  "info": {
+    "_postman_id": "9a6d070d-2dd2-47f2-93f2-b304a0ccc149",
+    "name": "Rede Raizes do Nordeste",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "31339621"
+  },
+  "item": [
+    {
+      "name": "Auth",
+      "item": [
+        {
+          "name": "T01 - Login válido (Positivo)",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "key": "username",
+                  "value": "carlos.lavratti@gmail.com",
+                  "type": "text",
+                  "uuid": "34d1145e-e6c3-46fd-bf47-59c079e2e450"
+                },
+                {
+                  "key": "password",
+                  "value": "Teste12345678",
+                  "type": "text",
+                  "uuid": "109cc076-7d12-4654-8d5c-44c7ff12fcca"
+                }
+              ]
+            },
+            "url": {
+              "raw": "http://localhost:8000/auth/login",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8000",
+              "path": [
+                "auth",
+                "login"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "T03 - Login com senha incorreta (Negativo)",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "key": "username",
+                  "value": "carlos.lavratti@gmail.com",
+                  "type": "text",
+                  "uuid": "4d423843-8900-4f84-bec8-36675e67a299"
+                },
+                {
+                  "key": "password",
+                  "value": "SenhaErrada",
+                  "type": "text",
+                  "uuid": "20534e71-5142-4325-a38d-3dda0e77b0de"
+                }
+              ]
+            },
+            "url": {
+              "raw": "http://localhost:8000/auth/login",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8000",
+              "path": [
+                "auth",
+                "login"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Usuarios",
+      "item": [
+        {
+          "name": "T09 - Cadastro de usuário com sucesso (Positivo)",
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"nome\": \"Cadastro Teste\",\r\n  \"email\": \"cadastro.teste@gmail.com\",\r\n  \"senha\": \"NovoTeste12345678\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8000/usuarios",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8000",
+              "path": [
+                "usuarios"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "T10 - Cadastro com email duplicado (Negativo)",
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"nome\": \"Cadastro Teste\",\r\n  \"email\": \"cadastro.teste@gmail.com\",\r\n  \"senha\": \"NovoTeste12345678\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8000/usuarios",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8000",
+              "path": [
+                "usuarios"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Pedidos",
+      "item": [
+        {
+          "name": "T02 - Acesso sem token (Negativo)",
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"canal_pedido\": \"APP\",\r\n  \"total\": 89.90,\r\n  \"forma_pagamento\": \"PIX\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8000/pedidos",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8000",
+              "path": [
+                "pedidos"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "T04 - Campo obrigatório ausente (Negativo)",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNhcmxvcy5sYXZyYXR0aUBnbWFpbC5jb20iLCJwZXJmaWwiOiJDTElFTlRFIiwiZXhwIjoxNzg4MTIwNDYxfQ.wxW0sNDQfyJ1CIuUNRzuA_pwz8mmDyfi-2_J78heLJQ",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"total\": 55.50,\r\n  \"forma_pagamento\": \"PIX\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8000/pedidos",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8000",
+              "path": [
+                "pedidos"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "T05 - Tipo de dado inválido (Negativo)",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNhcmxvcy5sYXZyYXR0aUBnbWFpbC5jb20iLCJwZXJmaWwiOiJDTElFTlRFIiwiZXhwIjoxNzg4MTIwNDYxfQ.wxW0sNDQfyJ1CIuUNRzuA_pwz8mmDyfi-2_J78heLJQ",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"canal_pedido\": \"APP\",\r\n  \"total\": \"cinquenta reais\",\r\n  \"forma_pagamento\": \"PIX\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8000/pedidos",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8000",
+              "path": [
+                "pedidos"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "T06 - Token inválido/corrompido (Negativo)",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNhcmxvcy5sYXZyYXR0aUBnbWFpbC5jb20iLCJwZXJmaWwiOiJDTElFTlRFIiwiZXhwIjoxNzg4MTIwNDYxfQ.wxW0sNDQfyJ1CIuUNRzuA_pwz8mmDyfi-2_J78h",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"canal_pedido\": \"APP\",\r\n  \"total\": 50.00,\r\n  \"forma_pagamento\": \"PIX\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8000/pedidos",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8000",
+              "path": [
+                "pedidos"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "T07 - Pagamento mock aprovado (Positivo)",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNhcmxvcy5sYXZyYXR0aUBnbWFpbC5jb20iLCJwZXJmaWwiOiJDTElFTlRFIiwiZXhwIjoxNzg4MTIxMDQyfQ.DWfEPXtmNjw4EjgCEbO5OQtiF2pGqCp2R7N3uciGFqY",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"canal_pedido\": \"APP\",\r\n  \"total\": 89.90,\r\n  \"forma_pagamento\": \"PIX\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8000/pedidos",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8000",
+              "path": [
+                "pedidos"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "T08 - Pagamento mock recusado (Negativo)",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNhcmxvcy5sYXZyYXR0aUBnbWFpbC5jb20iLCJwZXJmaWwiOiJDTElFTlRFIiwiZXhwIjoxNzg4MTIxMDQyfQ.DWfEPXtmNjw4EjgCEbO5OQtiF2pGqCp2R7N3uciGFqY",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"canal_pedido\": \"APP\",\r\n  \"total\": 89.90,\r\n  \"forma_pagamento\": \"ERRO\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8000/pedidos",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8000",
+              "path": [
+                "pedidos"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ]
+}
