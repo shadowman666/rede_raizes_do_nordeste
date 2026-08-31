@@ -49,7 +49,7 @@ rede_raizes_do_nordeste/
 ## Guia de Instalação e Execução Local
 
 ### 1. Clonar o Repositório
-⚠️ *Copie e cole a URL abaixo sem colchetes — se o link vier de um navegador em formato Markdown, remova a formatação.*
+*Copie e cole a URL abaixo sem colchetes — se o link vier de um navegador em formato Markdown, remova a formatação.*
 
 ```bash
 git clone [https://github.com/shadowman666/rede_raizes_do_nordeste.git](https://github.com/shadowman666/rede_raizes_do_nordeste.git)
@@ -88,7 +88,7 @@ copy .env.example .env
 ```bash
 cp .env.example .env
 ```
-> ⚠️ **Segurança:** Edite o arquivo `.env` gerado e defina uma `SECRET_KEY` própria. Nunca utilize a chave de exemplo em um ambiente de produção.
+> **Segurança:** Edite o arquivo `.env` gerado e defina uma `SECRET_KEY` própria. Nunca utilize a chave de exemplo em um ambiente de produção.
 
 ### 5. Criação do Banco de Dados
 A aplicação utiliza o **SQLAlchemy** integrado ao SQLite. As tabelas (`usuarios`, `pedidos` e `itens_pedido`) e o arquivo `raizes.db` são criados e inicializados de forma **automática** na primeira execução da API, dispensando migrations manuais no escopo do MVP.
@@ -177,4 +177,4 @@ A suíte de testes cobre **13 cenários funcionais** (positivos e negativos) org
    * **Pedidos:** `T02` (Acesso sem token), `T04` (Campo obrigatório ausente), `T05` (Tipo de dado inválido), `T06` (Token adulterado), `T07` (Pagamento aprovado) e `T08` (Pagamento recusado).
    * **Consultas:** `T12` (Listar Meus Pedidos do Cliente) e `T13` (Listar Todos os Pedidos - Gestão Admin).
 
-> ⚠️ **Importante:** Antes de rodar os testes de `/pedidos`, `/admin/pedidos` ou qualquer rota protegida, execute o **T01** (ou o login de ADMIN para o T13) para obter um token válido, e configure-o na aba *Authorization* da requisição correspondente.
+> **Importante:** Antes de rodar os testes de `/pedidos`, `/admin/pedidos` ou qualquer rota protegida, execute o **T01** (ou o login de ADMIN para o T13) para obter um token válido, e configure-o na aba *Authorization* da requisição correspondente.
