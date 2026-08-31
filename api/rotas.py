@@ -7,6 +7,7 @@ from domain.models import Usuario, Pedido, ItemPedido
 from domain.enums import StatusPedido
 from application.security import gerar_hash_senha, verificar_senha, criar_token_acesso
 from api.dependecias import obter_usuario_logado, obter_usuario_admin
+from infrastructure.logger import logger
 
 router = APIRouter()
 
@@ -81,6 +82,7 @@ def criar_pedido(
     db.add(novo_pedido)
     db.commit()
     db.refresh(novo_pedido)
+    logger.info(f"PEDIDO_CRIADO | pedido_id={novo_pedido.id} | cliente_id={usuario_atual.id} | status={novo_pedido.status}")
 
     # 2. Insiro todos os itens do pedido no banco de dados
     for item in pedido_in.itens:
