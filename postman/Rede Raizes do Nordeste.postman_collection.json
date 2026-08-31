@@ -98,7 +98,7 @@
             "header": [],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n  \"nome\": \"Cadastro Teste\",\r\n  \"email\": \"cadastro.teste@gmail.com\",\r\n  \"senha\": \"NovoTeste12345678\"\r\n}",
+              "raw": "{\r\n  \"nome\": \"Cadastro Teste\",\r\n  \"email\": \"cadastro.teste@gmail.com\",\r\n  \"senha\": \"NovoTeste12345678\",\r\n  \"consentimento_lgpd\": true\r\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -129,7 +129,35 @@
             "header": [],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n  \"nome\": \"Cadastro Teste\",\r\n  \"email\": \"cadastro.teste@gmail.com\",\r\n  \"senha\": \"NovoTeste12345678\"\r\n}",
+              "raw": "{\r\n  \"nome\": \"Cadastro Teste\",\r\n  \"email\": \"cadastro.teste@gmail.com\",\r\n  \"senha\": \"NovoTeste12345678\",\r\n  \"consentimento_lgpd\": true\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8000/usuarios",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8000",
+              "path": [
+                "usuarios"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "T11 - Cadastro de Administrador com LGPD (Positivo)",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"nome\": \"Gerente Geral\",\r\n  \"email\": \"admin@raizes.com\",\r\n  \"senha\": \"SenhaAdmin123\",\r\n  \"consentimento_lgpd\": true,\r\n  \"perfil\": \"ADMIN\"\r\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -194,7 +222,7 @@
               "bearer": [
                 {
                   "key": "token",
-                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNhcmxvcy5sYXZyYXR0aUBnbWFpbC5jb20iLCJwZXJmaWwiOiJDTElFTlRFIiwiZXhwIjoxNzg4MTIwNDYxfQ.wxW0sNDQfyJ1CIuUNRzuA_pwz8mmDyfi-2_J78heLJQ",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNhcmxvcy5sYXZyYXR0aUBnbWFpbC5jb20iLCJwZXJmaWwiOiJDTElFTlRFIiwiZXhwIjoxNzg4MTM1MDIwfQ.fofvMZOI4yAGlld4-QU_iHn1lqAiVfoI0V3qVJmwaaE",
                   "type": "string"
                 }
               ]
@@ -203,7 +231,7 @@
             "header": [],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n  \"total\": 55.50,\r\n  \"forma_pagamento\": \"PIX\"\r\n}",
+              "raw": "{\r\n  \"forma_pagamento\": \"PIX\",\r\n  \"itens\": [\r\n    {\r\n      \"produto_id\": 12,\r\n      \"quantidade\": 2,\r\n      \"preco_unitario\": 25.50\r\n    }\r\n  ]\r\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -232,7 +260,7 @@
               "bearer": [
                 {
                   "key": "token",
-                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNhcmxvcy5sYXZyYXR0aUBnbWFpbC5jb20iLCJwZXJmaWwiOiJDTElFTlRFIiwiZXhwIjoxNzg4MTIwNDYxfQ.wxW0sNDQfyJ1CIuUNRzuA_pwz8mmDyfi-2_J78heLJQ",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNhcmxvcy5sYXZyYXR0aUBnbWFpbC5jb20iLCJwZXJmaWwiOiJDTElFTlRFIiwiZXhwIjoxNzg4MTM1MDIwfQ.fofvMZOI4yAGlld4-QU_iHn1lqAiVfoI0V3qVJmwaaE",
                   "type": "string"
                 }
               ]
@@ -241,7 +269,7 @@
             "header": [],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n  \"canal_pedido\": \"APP\",\r\n  \"total\": \"cinquenta reais\",\r\n  \"forma_pagamento\": \"PIX\"\r\n}",
+              "raw": "{\r\n  \"canal_pedido\": \"APP\",\r\n  \"forma_pagamento\": \"PIX\",\r\n  \"itens\": [\r\n    {\r\n      \"produto_id\": 12,\r\n      \"quantidade\": \"duas\",\r\n      \"preco_unitario\": 25.50\r\n    }\r\n  ]\r\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -308,7 +336,7 @@
               "bearer": [
                 {
                   "key": "token",
-                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNhcmxvcy5sYXZyYXR0aUBnbWFpbC5jb20iLCJwZXJmaWwiOiJDTElFTlRFIiwiZXhwIjoxNzg4MTIxMDQyfQ.DWfEPXtmNjw4EjgCEbO5OQtiF2pGqCp2R7N3uciGFqY",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNhcmxvcy5sYXZyYXR0aUBnbWFpbC5jb20iLCJwZXJmaWwiOiJDTElFTlRFIiwiZXhwIjoxNzg4MTM1MDIwfQ.fofvMZOI4yAGlld4-QU_iHn1lqAiVfoI0V3qVJmwaaE",
                   "type": "string"
                 }
               ]
@@ -317,7 +345,7 @@
             "header": [],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n  \"canal_pedido\": \"APP\",\r\n  \"total\": 89.90,\r\n  \"forma_pagamento\": \"PIX\"\r\n}",
+              "raw": "{\r\n  \"canal_pedido\": \"APP\",\r\n  \"forma_pagamento\": \"PIX\",\r\n  \"itens\": [\r\n    {\r\n      \"produto_id\": 12,\r\n      \"quantidade\": 2,\r\n      \"preco_unitario\": 25.50\r\n    },\r\n    {\r\n      \"produto_id\": 15,\r\n      \"quantidade\": 1,\r\n      \"preco_unitario\": 10.00\r\n    }\r\n  ]\r\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -355,7 +383,7 @@
             "header": [],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n  \"canal_pedido\": \"APP\",\r\n  \"total\": 89.90,\r\n  \"forma_pagamento\": \"ERRO\"\r\n}",
+              "raw": "{\r\n  \"canal_pedido\": \"APP\",\r\n  \"total\": 89.90,\r\n  \"forma_pagamento\": \"ERROTESTE\"\r\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -370,6 +398,77 @@
               ],
               "port": "8000",
               "path": [
+                "pedidos"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "T12 - Listar Meus Pedidos do Cliente (Positivo)",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNhcmxvcy5sYXZyYXR0aUBnbWFpbC5jb20iLCJwZXJmaWwiOiJDTElFTlRFIiwiZXhwIjoxNzg4MTM4OTkxfQ.B5WY13Vu6l-Db9ZuQqYBk7HSs-_KztTK_6UCYG8lYSM",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"nome\": \"Gerente Geral\",\r\n  \"email\": \"admin@raizes.com\",\r\n  \"senha\": \"SenhaAdmin123\",\r\n  \"consentimento_lgpd\": true,\r\n  \"perfil\": \"ADMIN\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8000/pedidos",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8000",
+              "path": [
+                "pedidos"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "T13 - Listar Todos os Pedidos - Gestão Admin (Positivo)",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQHJhaXplcy5jb20iLCJwZXJmaWwiOiJBRE1JTiIsImV4cCI6MTc4ODEzOTkyMX0.fRQvsaVcLqE-1fdufoih-78jDEAc7yXmog_KjyQkz4Y",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8000/admin/pedidos",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8000",
+              "path": [
+                "admin",
                 "pedidos"
               ]
             }

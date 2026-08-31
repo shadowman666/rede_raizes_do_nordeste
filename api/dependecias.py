@@ -4,14 +4,14 @@ from sqlalchemy.orm import Session
 from jose import jwt, JWTError
 from infrastructure.database import get_db
 from domain.models import Usuario
+from domain.enums import PerfilUsuario
 from application.security import SECRET_KEY, ALGORITHM
 
 # Rota onde o cliente obtém o token
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="/auth/login")
 
-
 def obter_usuario_logado(
-    token: str = Depends(oauth2_scheme), db: Session = Depends(get_db)
+        token: str = Depends(oauth2_scheme), db: Session = Depends(get_db)
 ):
     """Valido o token JWT enviado no cabeçalho e retorno o usuário autenticado."""
     erro_credenciais = HTTPException(
@@ -35,4 +35,15 @@ def obter_usuario_logado(
     if usuario is None:
         raise erro_credenciais
 
+    return usuario
+
+# ==========================================
+# ROTA GERENCIAL - RBAC
+# ==========================================
+def obter_usuario_admin(usuario: Usuario = Depends(obter_usuario_logado)):
+    if usuario.perfil != PerfilUsuario.ADMIN:
+        raise HTTPException(
+            status_code=status.HTTP_403_FORBIDDEN,
+            detail={"error": "ACESSO_NEGADO", "message": "Requer privilégios de administrador."}
+        )
     return usuario

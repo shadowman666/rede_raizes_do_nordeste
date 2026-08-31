@@ -10,6 +10,8 @@ class UsuarioCreate(BaseModel):
     nome: str
     email: EmailStr
     senha: str
+    consentimento_lgpd: bool  # Exigência explícita da LGPD
+    perfil: PerfilUsuario = PerfilUsuario.CLIENTE  # Padrão é CLIENTE, mas deixa criar ADMIN
 
 class UsuarioResponse(BaseModel):
     id: int
@@ -33,10 +35,23 @@ class TokenData(BaseModel):
 # ==========================================
 # SCHEMAS DE PEDIDO (O Fluxo Crítico)
 # ==========================================
+class ItemPedidoCreate(BaseModel):
+    produto_id: int
+    quantidade: int
+    preco_unitario: float
+
 class PedidoCreate(BaseModel):
-    canal_pedido: CanalPedido  # Obriga a enviar "APP", "TOTEM", etc.
-    forma_pagamento: str       # Ex: "MOCK", "PIX"
-    total: float               # Simplificado para o MVP do projeto
+    canal_pedido: CanalPedido
+    forma_pagamento: str
+    itens: list[ItemPedidoCreate]
+
+class ItemPedidoResponse(BaseModel):
+    id: int
+    produto_id: int
+    quantidade: int
+    preco_unitario: float
+    class Config:
+        from_attributes = True
 
 class PedidoResponse(BaseModel):
     id: int
@@ -46,7 +61,7 @@ class PedidoResponse(BaseModel):
     forma_pagamento: str
     cliente_id: int
     data_criacao: datetime
-
+    itens: list[ItemPedidoResponse] # Devolve a lista de itens na resposta
     class Config:
         from_attributes = True
 
