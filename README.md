@@ -6,14 +6,16 @@ API RESTful desenvolvida em Python com **FastAPI** para o gerenciamento do siste
 
 ## Stack Tecnológica e Requisitos de Ambiente
 
-* **Linguagem:** Python 3.10+
-* **Framework Web:** FastAPI (v0.100+)
-* **Servidor ASGI:** Uvicorn
-* **ORM:** SQLAlchemy
-* **Banco de Dados:** SQLite (`raizes.db`)
-* **Validação de Dados:** Pydantic v2
-* **Segurança:** JWT (`python-jose`) e Hash de senhas (`passlib` com `bcrypt`)
-* **Testes e Documentação:** Postman & OpenAPI (Swagger UI)
+| Camada | Tecnologia |
+| :--- | :--- |
+| **Linguagem** | Python 3.10+ |
+| **Framework Web** | FastAPI (v0.100+) |
+| **Servidor ASGI** | Uvicorn |
+| **ORM** | SQLAlchemy |
+| **Banco de Dados** | SQLite (`raizes.db`) |
+| **Validação de Dados** | Pydantic v2 |
+| **Segurança** | JWT (`python-jose`) e Hash de senhas (`passlib` com `bcrypt`) |
+| **Testes e Documentação** | Postman & OpenAPI (Swagger UI) |
 
 ---
 
@@ -47,10 +49,13 @@ rede_raizes_do_nordeste/
 ## Guia de Instalação e Execução Local
 
 ### 1. Clonar o Repositório
+⚠️ *Copie e cole a URL abaixo sem colchetes — se o link vier de um navegador em formato Markdown, remova a formatação.*
+
 ```bash
-git clone https://github.com/shadowman666/rede_raizes_do_nordeste.git
+git clone [https://github.com/shadowman666/rede_raizes_do_nordeste.git](https://github.com/shadowman666/rede_raizes_do_nordeste.git)
 cd rede_raizes_do_nordeste
 ```
+> **Nota:** Se o terminal retornar que o termo `git` não é reconhecido, o Git não está configurado na máquina. Baixe em git-scm.com/downloads, instale e reabra o terminal.
 
 ### 2. Configurar o Ambiente Virtual (venv)
 
@@ -83,6 +88,7 @@ copy .env.example .env
 ```bash
 cp .env.example .env
 ```
+> ⚠️ **Segurança:** Edite o arquivo `.env` gerado e defina uma `SECRET_KEY` própria. Nunca utilize a chave de exemplo em um ambiente de produção.
 
 ### 5. Criação do Banco de Dados
 A aplicação utiliza o **SQLAlchemy** integrado ao SQLite. As tabelas (`usuarios`, `pedidos` e `itens_pedido`) e o arquivo `raizes.db` são criados e inicializados de forma **automática** na primeira execução da API, dispensando migrations manuais no escopo do MVP.
@@ -119,7 +125,7 @@ Com o servidor em execução, acesse a documentação interativa pelo navegador:
 ## Exemplos de Payloads (JSON)
 
 ### 1. Cadastro de Usuário com Consentimento LGPD (`POST /usuarios`)
-O envio do campo `"consentimento_lgpd": true` é **obrigatório**. Se omitido ou enviado como `false`, a API rejeita a requisição com `HTTP 400 Bad Request`:
+O envio do campo `"consentimento_lgpd": true` é **obrigatório**. Se omitido ou enviado como `false`, a API rejeita a requisição com `HTTP 400 Bad Request` e erro `LGPD_REJEITADA`:
 
 ```json
 {
@@ -132,7 +138,7 @@ O envio do campo `"consentimento_lgpd": true` é **obrigatório**. Se omitido ou
 ```
 
 ### 2. Criação de Pedido Multicanal com Itens (`POST /pedidos`)
-O cálculo do valor total do pedido é realizado de forma automática no back-end a partir do array `"itens"`:
+O cálculo do valor total do pedido é realizado de forma automática no back-end a partir do array `"itens"` (multiplicando a quantidade pelo preço unitário):
 
 ```json
 {
@@ -170,3 +176,5 @@ A suíte de testes cobre **13 cenários funcionais** (positivos e negativos) org
    * **Auth:** `T01` (Login válido e token JWT) e `T03` (Bloqueio por senha incorreta).
    * **Pedidos:** `T02` (Acesso sem token), `T04` (Campo obrigatório ausente), `T05` (Tipo de dado inválido), `T06` (Token adulterado), `T07` (Pagamento aprovado) e `T08` (Pagamento recusado).
    * **Consultas:** `T12` (Listar Meus Pedidos do Cliente) e `T13` (Listar Todos os Pedidos - Gestão Admin).
+
+> ⚠️ **Importante:** Antes de rodar os testes de `/pedidos`, `/admin/pedidos` ou qualquer rota protegida, execute o **T01** (ou o login de ADMIN para o T13) para obter um token válido, e configure-o na aba *Authorization* da requisição correspondente.
